@@ -1,0 +1,10 @@
+The following is a list of all software licenses for projects that we depend on.
+
+    google-guice: Apache License 2.0, http://code.google.com/p/guava-libraries/
+    roboguice: Apache License 2.0, http://code.google.com/p/roboguice/
+    HttpComponents: Apache License 2.0, http://hc.apache.org/
+    Robolectric: MIT License, https://github.com/pivotal/robolectric
+    ASM (core): Copyright (c) 2000-2005 INRIA, France Telecom, http://asm.ow2.org/license.html
+    ASM (commons): Copyright (c) 2000-2005 INRIA, France Telecom, http://asm.ow2.org/license.html
+    great-expectations: MIT License, https://github.com/xian/great-expectations
+    JUnit: Common Public License - v 1.0, http://www.junit.org/
