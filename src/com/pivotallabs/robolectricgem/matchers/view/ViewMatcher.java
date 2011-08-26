@@ -9,4 +9,23 @@ public class ViewMatcher<T extends View, M extends ViewMatcher<T, M>> extends Ob
     public boolean toBeVisible() {
         return actual.getVisibility() == View.VISIBLE;
     }
+
+    public boolean toBeInvisible() {
+        return actual.getVisibility() == View.INVISIBLE;
+    }
+
+    public boolean toBeGone() {
+        return actual.getVisibility() == View.GONE;
+    }
+
+    public boolean toHaveVisibility(int visibility) {
+        switch (visibility) {
+            case View.VISIBLE:
+            case View.INVISIBLE:
+            case View.GONE:
+                return actual.getVisibility() == visibility;
+            default:
+                throw new IllegalArgumentException();
+        }
+    }
 }
