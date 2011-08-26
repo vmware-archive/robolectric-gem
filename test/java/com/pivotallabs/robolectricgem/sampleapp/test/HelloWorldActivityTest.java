@@ -1,6 +1,7 @@
 package com.pivotallabs.robolectricgem.sampleapp.test;
 
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import com.pivotallabs.robolectricgem.R;
 import com.pivotallabs.robolectricgem.sampleapp.app.HelloWorldActivity;
@@ -18,6 +19,7 @@ public class HelloWorldActivityTest {
         activity.onCreate(null);
 
         TextView titleView = (TextView) activity.findViewById(R.id.title);
+        EditText editText = (EditText) activity.findViewById(R.id.edit_text);
 
         // Demonstrating different flavors of visibility checks
         expect(titleView).toBeVisible();
@@ -28,5 +30,7 @@ public class HelloWorldActivityTest {
         expect(titleView).toHaveText("Hello World");
 
         expect(titleView).toBeEnabled();
+
+        expect(editText).toHaveHint("Enter some text");
     }
 }
