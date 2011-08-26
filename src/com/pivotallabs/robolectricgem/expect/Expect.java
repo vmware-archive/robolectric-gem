@@ -9,6 +9,7 @@ import com.pivotallabs.greatexpectations.matchers.ObjectMatcher;
 import com.pivotallabs.greatexpectations.matchers.StringMatcher;
 import com.pivotallabs.robolectricgem.matchers.view.ViewMatcher;
 
+@SuppressWarnings({"unchecked"})
 public class Expect {
     public static <T extends Object, M extends ObjectMatcher<T, M>> ObjectMatcher<T, ?> expect(T actual) {
         return GreatExpectations.wrapped(ObjectMatcher.class, actual);
