@@ -19,6 +19,7 @@ public class HelloWorldActivityTest {
 
         TextView titleView = (TextView) activity.findViewById(R.id.title);
 
+        // Demonstrating different flavors of visibility checks
         expect(titleView).toBeVisible();
         expect(titleView).toHaveVisibility(View.VISIBLE);
         expect(titleView).not.toBeInvisible();

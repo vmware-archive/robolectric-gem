@@ -15,7 +15,7 @@ This allows you to write unit test assertions for Android classes in the style o
         activity.onCreate(null);
         TextView titleView = (TextView) activity.findViewById(R.id.title);
 
-        # toHaveText() is a method provided by this library
+        // toHaveText() is a method provided by robolectric-gem
         expect(titleView).toHaveText("Hello World");
     }
 
