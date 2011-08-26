@@ -10,4 +10,13 @@ public class TextViewMatcher<T extends TextView, M extends TextViewMatcher<T, M>
         descriptionOfActual = actual.getClass().getSimpleName() + "[text=" + actualText + "]";
         return actualText.equals(expectedText);
     }
+
+    public boolean toHaveHint(CharSequence expectedHint) {
+        CharSequence actualHint = actual.getHint();
+        descriptionOfActual = actual.getClass().getSimpleName() + "[hint=" + actualHint + "]";
+        if (actualHint == null) {
+            return expectedHint == null;
+        }
+        return actualHint.equals(expectedHint);
+    }
 }

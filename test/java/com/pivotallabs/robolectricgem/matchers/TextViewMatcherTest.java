@@ -35,6 +35,25 @@ public class TextViewMatcherTest {
         expect(matcher.getDescriptionOfActual()).toEqual("TextView[text=Hello World]");
     }
 
+    @Test
+    public void test_toHaveHint() throws Exception {
+        textView.setHint("hint");
+        expect(matcher.toHaveHint("hint")).toBeTrue();
+        expect(matcher.toHaveHint("other hint")).toBeFalse();
+
+        textView.setHint(null);
+        expect(matcher.toHaveHint(null)).toBeTrue();
+        expect(matcher.toHaveHint("")).toBeFalse();
+        expect(matcher.toHaveHint("hint")).toBeFalse();
+    }
+
+    @Test
+    public void test_toHaveHint_failureMessages() throws Exception {
+        textView.setHint("actual hint");
+        matcher.toHaveHint("expected hint");
+        expect(matcher.getDescriptionOfActual()).toEqual("TextView[hint=actual hint]");
+    }
+
     private <T extends TextView> TextViewMatcher<T, ?> newTextViewMatcher(T value) {
         TextViewMatcher matcher = new TextViewMatcher();
         GreatExpectations.setActual(matcher, value);
