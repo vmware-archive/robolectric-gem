@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="StarterActivity" default="test">
+<project name="RobolectricGEM" default="test">
 
 <!-- The local.properties file is created and updated by the 'android'
      tool.
@@ -168,6 +168,13 @@
             </classpath>
         </junit>
         <fail if="junit.failure" message="Unit test(s) failed.  See reports!"/>
+    </target>
+
+    <target name="release-jar" depends="test" description="package the library jar for release">
+        <jar destfile="${out.absolute.dir}/robolectric-gem.jar"
+             basedir="${out.classes.absolute.dir}"
+             excludes="**/R.class **/R$*.class"
+            />
     </target>
 
 </project>
