@@ -2,7 +2,7 @@ package com.pivotallabs.robolectricgem.expect;
 
 import com.pivotallabs.greatexpectations.BaseMatcher;
 import com.pivotallabs.greatexpectations.ExpectGenerator;
-import com.pivotallabs.robolectricgem.matchers.view.ViewMatcher;
+import com.pivotallabs.robolectricgem.matchers.ViewMatcher;
 
 import java.io.File;
 import java.io.FileNotFoundException;

@@ -7,7 +7,7 @@ import com.pivotallabs.greatexpectations.matchers.DateMatcher;
 import com.pivotallabs.greatexpectations.matchers.IterableMatcher;
 import com.pivotallabs.greatexpectations.matchers.ObjectMatcher;
 import com.pivotallabs.greatexpectations.matchers.StringMatcher;
-import com.pivotallabs.robolectricgem.matchers.view.ViewMatcher;
+import com.pivotallabs.robolectricgem.matchers.ViewMatcher;
 
 @SuppressWarnings({"unchecked"})
 public class Expect {
