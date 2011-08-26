@@ -26,5 +26,7 @@ public class HelloWorldActivityTest {
         expect(titleView).not.toBeGone();
 
         expect(titleView).toHaveText("Hello World");
+
+        expect(titleView).toBeEnabled();
     }
 }

@@ -30,6 +30,10 @@ public class ViewMatcher<T extends View, M extends ViewMatcher<T, M>> extends An
         }
     }
 
+    public boolean toBeEnabled() {
+        return actual.isEnabled();
+    }
+
     private String visibilityToString(int visibility) {
         switch (visibility) {
             case View.VISIBLE:

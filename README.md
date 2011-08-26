@@ -49,6 +49,13 @@ To add a new matcher method to a pre-existing matcher class, simply enhance the 
 add a new matcher class, you must also re-generate Expect.java.  This can be auto-generated in IDEA by clicking the
 run button for the run configuration called "Add custom great-expectation Matchers by Regenerating Expect.java".
 
+Please follow the existing conventions for customized failure messages.  If you customize your matcher's failure
+message, be sure to do it whether the matcher is going to return true or false, because the calling test may have
+inverted the matcher using `.not`, causing returning true to be considered a failure.  Watch out for null pointer
+exceptions in your matchers: `actual` itself will never be null, but `actual.someMethod().equals(expected)` could
+cause a null pointer exception when `someMethod()` returns null.  This is typically a situation to introduce a
+customized failure message.
+
 When pushing code or submitting pull requests from your fork, please follow the existing code style, naming conventions,
 and project organization as already established for the project. Please always include unit tests for your new matchers
 and, if possible, an example of using your matcher in the included sample app's tests.

@@ -99,6 +99,15 @@ public class ViewMatcherTest {
         matcher.toHaveVisibility(View.VISIBLE + View.INVISIBLE + View.GONE);
     }
 
+    @Test
+    public void test_toBeEnabled() throws Exception {
+        view.setEnabled(true);
+        expect(matcher.toBeEnabled()).toBeTrue();
+
+        view.setEnabled(false);
+        expect(matcher.toBeEnabled()).toBeFalse();
+    }
+
     private <T extends View> ViewMatcher<T, ?> newViewMatcher(T value) {
         ViewMatcher matcher = new ViewMatcher();
         GreatExpectations.setActual(matcher, value);
