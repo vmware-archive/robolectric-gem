@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="RobolectricGEM" type="AndroidRunConfigurationType" factoryName="Android Application">
+  <configuration default="false" name="RobolectricGEM Sample App" type="AndroidRunConfigurationType" factoryName="Android Application">
     <module name="RobolectricGEM" />
     <option name="ACTIVITY_CLASS" value="" />
     <option name="MODE" value="default_activity" />

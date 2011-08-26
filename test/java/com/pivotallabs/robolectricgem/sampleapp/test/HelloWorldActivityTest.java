@@ -1,8 +1,9 @@
-package com.pivotallabs.robolectricgem;
+package com.pivotallabs.robolectricgem.sampleapp.test;
 
 import android.view.View;
 import android.widget.TextView;
-import com.pivotallabs.robolectricgem.app.HelloWorldActivity;
+import com.pivotallabs.robolectricgem.R;
+import com.pivotallabs.robolectricgem.sampleapp.app.HelloWorldActivity;
 import com.pivotallabs.robolectricgem.support.RobolectricTestRunnerWithInjection;
 import org.junit.Test;
 import org.junit.runner.RunWith;

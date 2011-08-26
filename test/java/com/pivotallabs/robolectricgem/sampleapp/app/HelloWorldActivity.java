@@ -1,4 +1,4 @@
-package com.pivotallabs.robolectricgem.app;
+package com.pivotallabs.robolectricgem.sampleapp.app;
 
 import android.os.Bundle;
 import android.widget.TextView;

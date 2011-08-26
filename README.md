@@ -1,7 +1,7 @@
-## Robolectric Great-Expections Matchers
+## Robolectric Great-Expections Matchers (robolectric-gem)
 
 This project aims to create a library of [great-expections](https://github.com/xian/great-expectations) matcher
-classes for [Robolectric](https://github.com/pivotal/robolectric) unit tests.
+classes for [Robolectric](https://github.com/pivotal/robolectric) Android unit tests.
 
 To use this library in your project, download robolectric-gem.jar and add it to your classpath for your unit tests.
 This allows you to write unit test assertions for Android classes in the style of great-expectations, like this:
@@ -16,8 +16,27 @@ This allows you to write unit test assertions for Android classes in the style o
         expect(titleView).toHaveText("Hello World");
     }
 
+For more examples, see the included
+[sample Android app](https://github.com/pivotal/robolectric-gem/tree/master/test/java/com/pivotallabs/robolectricgem/sampleapp/app)
+and
+[its tests](https://github.com/pivotal/robolectric-gem/tree/master/test/java/com/pivotallabs/robolectricgem/sampleapp/test).
 
-## License
+### Contributing
+
+We welcome your contributions.
+
+To get started, clone or fork+clone the repo.  Then initialize the submodules.
+
+We use IntelliJ IDEA.  In IDEA, `File -> Open Project` and choose the top directory of the repo to open the project.
+
+We also use ant.  To compile, run tests, and build the jar file on the command-line, use `ant clean release-jar`.
+After a successful ant build, you can find the built `robolectric-gem.jar` in the `ant_build` subdirectory.
+
+When pushing code or submitting pull requests from your fork, please follow the existing code style, naming conventions,
+and project organization as already established for the project. Please always include unit tests for your new matchers
+and, if possible, an example of using your matcher in the included sample app's tests.
+
+### License
 
     Copyright 2011 Pivotal Labs
 
