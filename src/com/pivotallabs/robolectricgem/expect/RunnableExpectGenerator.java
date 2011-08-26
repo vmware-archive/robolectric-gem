@@ -2,11 +2,13 @@ package com.pivotallabs.robolectricgem.expect;
 
 import com.pivotallabs.greatexpectations.BaseMatcher;
 import com.pivotallabs.greatexpectations.ExpectGenerator;
+import com.pivotallabs.robolectricgem.matchers.TextViewMatcher;
 import com.pivotallabs.robolectricgem.matchers.ViewMatcher;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -33,7 +35,7 @@ public class RunnableExpectGenerator extends ExpectGenerator {
      */
     public static void generateCustomExpect() throws FileNotFoundException {
         String packageName = Expect.class.getPackage().getName();
-        String path = "test/java/" + packageName.replace(".", "/") + "/Expect.java";
+        String path = "src/" + packageName.replace(".", "/") + "/Expect.java";
         System.out.println("path = " + path);
         System.out.println("packagename = " + packageName);
         RunnableExpectGenerator expectGenerator = new RunnableExpectGenerator(packageName);
@@ -42,9 +44,16 @@ public class RunnableExpectGenerator extends ExpectGenerator {
     }
     
     @Override
+    @SuppressWarnings({"unchecked"})
     public List<Class<? extends BaseMatcher>> matcherClasses() {
         List<Class<? extends BaseMatcher>> classes = super.matcherClasses();
-        classes.add(ViewMatcher.class);
+
+        Class<? extends BaseMatcher>[] customMatcherClasses = new Class[] {
+                ViewMatcher.class,
+                TextViewMatcher.class
+        };
+
+        classes.addAll(Arrays.asList(customMatcherClasses));
         return classes;
     }
 }

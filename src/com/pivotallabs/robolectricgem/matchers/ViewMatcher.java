@@ -17,14 +17,14 @@ public class ViewMatcher<T extends View, M extends ViewMatcher<T, M>> extends An
         return actual.getVisibility() == View.GONE;
     }
 
-    public boolean toHaveVisibility(int visibility) {
-        switch (visibility) {
+    public boolean toHaveVisibility(int expectedVisibility) {
+        switch (expectedVisibility) {
             case View.VISIBLE:
             case View.INVISIBLE:
             case View.GONE:
                 descriptionOfActual = actual.getClass().getSimpleName() + "[visibility=" + visibilityToString(actual.getVisibility()) + "]";
-                descriptionOfExpected = visibilityToString(visibility);
-                return actual.getVisibility() == visibility;
+                descriptionOfExpected = visibilityToString(expectedVisibility);
+                return actual.getVisibility() == expectedVisibility;
             default:
                 throw new IllegalArgumentException("expected argument View.VISIBLE, View.INVISIBLE, or View.GONE");
         }
