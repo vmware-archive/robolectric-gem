@@ -31,10 +31,13 @@ public class Expect {
     public static <T extends String, M extends StringMatcher<T, M>> StringMatcher<T, ?> expect(T actual) {
         return wrapped(StringMatcher.class, actual);
     }
-    public static <T extends android.view.View, M extends com.pivotallabs.robolectricgem.matchers.ViewMatcher<T, M>> com.pivotallabs.robolectricgem.matchers.ViewMatcher<T, ?> expect(T actual) {
-        return wrapped(com.pivotallabs.robolectricgem.matchers.ViewMatcher.class, actual);
+    public static <T extends android.widget.CompoundButton, M extends com.pivotallabs.robolectricgem.matchers.CompoundButtonMatcher<T, M>> com.pivotallabs.robolectricgem.matchers.CompoundButtonMatcher<T, ?> expect(T actual) {
+        return wrapped(com.pivotallabs.robolectricgem.matchers.CompoundButtonMatcher.class, actual);
     }
     public static <T extends android.widget.TextView, M extends com.pivotallabs.robolectricgem.matchers.TextViewMatcher<T, M>> com.pivotallabs.robolectricgem.matchers.TextViewMatcher<T, ?> expect(T actual) {
         return wrapped(com.pivotallabs.robolectricgem.matchers.TextViewMatcher.class, actual);
+    }
+    public static <T extends android.view.View, M extends com.pivotallabs.robolectricgem.matchers.ViewMatcher<T, M>> com.pivotallabs.robolectricgem.matchers.ViewMatcher<T, ?> expect(T actual) {
+        return wrapped(com.pivotallabs.robolectricgem.matchers.ViewMatcher.class, actual);
     }
 }

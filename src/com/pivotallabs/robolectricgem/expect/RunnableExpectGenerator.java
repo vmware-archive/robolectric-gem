@@ -2,6 +2,7 @@ package com.pivotallabs.robolectricgem.expect;
 
 import com.pivotallabs.greatexpectations.BaseMatcher;
 import com.pivotallabs.greatexpectations.ExpectGenerator;
+import com.pivotallabs.robolectricgem.matchers.CompoundButtonMatcher;
 import com.pivotallabs.robolectricgem.matchers.TextViewMatcher;
 import com.pivotallabs.robolectricgem.matchers.ViewMatcher;
 
@@ -49,8 +50,9 @@ public class RunnableExpectGenerator extends ExpectGenerator {
         List<Class<? extends BaseMatcher>> classes = super.matcherClasses();
 
         Class<? extends BaseMatcher>[] customMatcherClasses = new Class[] {
-                ViewMatcher.class,
-                TextViewMatcher.class
+                CompoundButtonMatcher.class,
+                TextViewMatcher.class,
+                ViewMatcher.class
         };
 
         classes.addAll(Arrays.asList(customMatcherClasses));
