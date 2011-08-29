@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.pivotallabs.robolectricgem.R;
 import com.pivotallabs.robolectricgem.support.RobolectricTestRunnerWithInjection;
@@ -23,6 +24,7 @@ public class HelloWorldActivityTest {
     private TextView titleView;
     private EditText editText;
     private CheckBox checkBox;
+    private ImageView iconImageView;
 
     @Before
     public void setup() throws Exception {
@@ -32,6 +34,7 @@ public class HelloWorldActivityTest {
         titleView = (TextView) activity.findViewById(R.id.title);
         editText = (EditText) activity.findViewById(R.id.edit_text);
         checkBox = (CheckBox) activity.findViewById(R.id.check_box);
+        iconImageView = (ImageView) activity.findViewById(R.id.icon_image_view);
     }
 
     @Test
@@ -48,7 +51,12 @@ public class HelloWorldActivityTest {
     }
 
     @Test
-    public void shouldHaveHint() throws Exception {
+    public void shouldShowAnIcon() throws Exception {
+        expect(iconImageView).toBeLoadedFromResource(R.drawable.icon);
+    }
+
+    @Test
+    public void shouldHaveHintOnEditText() throws Exception {
         expect(editText).toHaveHint("Enter some text");
     }
 

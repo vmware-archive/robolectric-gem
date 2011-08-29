@@ -40,6 +40,9 @@ public class Expect {
     public static <T extends android.app.Dialog, M extends com.pivotallabs.robolectricgem.matchers.DialogMatcher<T, M>> com.pivotallabs.robolectricgem.matchers.DialogMatcher<T, ?> expect(T actual) {
         return wrapped(com.pivotallabs.robolectricgem.matchers.DialogMatcher.class, actual);
     }
+    public static <T extends android.widget.ImageView, M extends com.pivotallabs.robolectricgem.matchers.ImageViewMatcher<T, M>> com.pivotallabs.robolectricgem.matchers.ImageViewMatcher<T, ?> expect(T actual) {
+        return wrapped(com.pivotallabs.robolectricgem.matchers.ImageViewMatcher.class, actual);
+    }
     public static <T extends android.widget.TextView, M extends com.pivotallabs.robolectricgem.matchers.TextViewMatcher<T, M>> com.pivotallabs.robolectricgem.matchers.TextViewMatcher<T, ?> expect(T actual) {
         return wrapped(com.pivotallabs.robolectricgem.matchers.TextViewMatcher.class, actual);
     }
