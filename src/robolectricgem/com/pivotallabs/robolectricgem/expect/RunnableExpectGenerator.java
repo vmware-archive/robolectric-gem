@@ -2,6 +2,7 @@ package com.pivotallabs.robolectricgem.expect;
 
 import com.pivotallabs.greatexpectations.BaseMatcher;
 import com.pivotallabs.greatexpectations.ExpectGenerator;
+import com.pivotallabs.robolectricgem.matchers.AlertDialogMatcher;
 import com.pivotallabs.robolectricgem.matchers.CompoundButtonMatcher;
 import com.pivotallabs.robolectricgem.matchers.DialogMatcher;
 import com.pivotallabs.robolectricgem.matchers.TextViewMatcher;
@@ -20,6 +21,7 @@ public class RunnableExpectGenerator extends ExpectGenerator {
 
     @SuppressWarnings({"unchecked"})
     public static final Class<? extends BaseMatcher>[] CUSTOM_MATCHER_CLASSES = new Class[] {
+            AlertDialogMatcher.class,
             CompoundButtonMatcher.class,
             DialogMatcher.class,
             TextViewMatcher.class,
@@ -34,19 +36,9 @@ public class RunnableExpectGenerator extends ExpectGenerator {
         generateCustomExpect();
     }
 
-    /**
-     * @throws FileNotFoundException
-     *
-     * Regenerate Expect.java to make you custom Matcher methods available in tests:
-     *
-     * 1. Create your new Matcher class
-     * 2. Add it to the list in matcherClasses()
-     * 3. Execute this method to regenerate Expect.java
-     * 
-     */
     public static void generateCustomExpect() throws FileNotFoundException {
         String packageName = Expect.class.getPackage().getName();
-        String path = "src/" + packageName.replace(".", "/") + "/Expect.java";
+        String path = "src/robolectricgem/" + packageName.replace(".", "/") + "/Expect.java";
         System.out.println("path = " + path);
         System.out.println("packagename = " + packageName);
         RunnableExpectGenerator expectGenerator = new RunnableExpectGenerator(packageName);

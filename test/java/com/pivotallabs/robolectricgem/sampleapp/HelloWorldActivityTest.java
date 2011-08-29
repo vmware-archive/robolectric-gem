@@ -1,5 +1,6 @@
 package com.pivotallabs.robolectricgem.sampleapp;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.view.View;
 import android.widget.CheckBox;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 import com.pivotallabs.robolectricgem.R;
 import com.pivotallabs.robolectricgem.support.RobolectricTestRunnerWithInjection;
 import com.xtremelabs.robolectric.Robolectric;
+import com.xtremelabs.robolectric.shadows.ShadowAlertDialog;
 import com.xtremelabs.robolectric.shadows.ShadowDialog;
 import org.junit.Before;
 import org.junit.Test;
@@ -56,7 +58,7 @@ public class HelloWorldActivityTest {
     }
 
     @Test
-    public void shouldShowADialog() throws Exception {
+    public void shouldShowADialog_whenTheActivityIsCreated() throws Exception {
         Dialog dialog = ShadowDialog.getLatestDialog();
         expect(dialog).toHaveTitle("Hi!");
         expect(dialog).toBeShowing();
@@ -64,5 +66,15 @@ public class HelloWorldActivityTest {
         Robolectric.clickOn(dialog.findViewById(R.id.dismiss_button));
 
         expect(dialog).toBeDismissed();
+    }
+
+    @Test
+    public void shouldShowAnAlertDialog_whenTheFirstDialogIsDismissed() throws Exception {
+        Robolectric.clickOn(ShadowDialog.getLatestDialog().findViewById(R.id.dismiss_button));
+        AlertDialog alertDialog = ShadowAlertDialog.getLatestAlertDialog();
+
+        expect(alertDialog).toBeShowing();
+        expect(alertDialog).toHavePositiveButtonText("OK, enough already!");
+        expect(alertDialog).toHaveMessage("Thanks for running the sample app.");
     }
 }

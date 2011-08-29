@@ -1,5 +1,6 @@
 package com.pivotallabs.robolectricgem.sampleapp;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
@@ -28,6 +29,10 @@ public class HelloWorldActivity extends RoboActivity {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+                new AlertDialog.Builder(HelloWorldActivity.this)
+                        .setMessage("Thanks for running the sample app.")
+                        .setPositiveButton("OK, enough already!", null)
+                        .show();
             }
         });
         dialog.setTitle("Hi!");
