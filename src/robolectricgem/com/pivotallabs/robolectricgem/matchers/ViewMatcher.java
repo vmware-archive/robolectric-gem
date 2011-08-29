@@ -22,7 +22,7 @@ public class ViewMatcher<T extends View, M extends ViewMatcher<T, M>> extends An
             case View.VISIBLE:
             case View.INVISIBLE:
             case View.GONE:
-                descriptionOfActual = actual.getClass().getSimpleName() + "[visibility=" + visibilityToString(actual.getVisibility()) + "]";
+                setDescriptionOfActual("visibility", visibilityToString(actual.getVisibility()));
                 descriptionOfExpected = visibilityToString(expectedVisibility);
                 return actual.getVisibility() == expectedVisibility;
             default:

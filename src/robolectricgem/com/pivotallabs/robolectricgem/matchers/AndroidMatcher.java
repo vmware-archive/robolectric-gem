@@ -17,4 +17,8 @@ public class AndroidMatcher<T, M extends AndroidMatcher<T,M>>  extends ObjectMat
         }
         return actual.equals(expected);
     }
+
+    protected <T> void setDescriptionOfActual(String propertyName, T propertyValue) {
+        descriptionOfActual = actual.getClass().getSimpleName() + "[" + propertyName + "=" + propertyValue + "]";
+    }
 }

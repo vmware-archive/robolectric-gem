@@ -7,13 +7,13 @@ import com.pivotallabs.greatexpectations.MatcherOf;
 public class TextViewMatcher<T extends TextView, M extends TextViewMatcher<T, M>> extends ViewMatcher<T, M> {
     public boolean toHaveText(CharSequence expectedText) {
         CharSequence actualText = actual.getText();
-        descriptionOfActual = actual.getClass().getSimpleName() + "[text=" + actualText + "]";
+        setDescriptionOfActual("text", actualText);
         return actualText.equals(expectedText);
     }
 
     public boolean toHaveHint(CharSequence expectedHint) {
         CharSequence actualHint = actual.getHint();
-        descriptionOfActual = actual.getClass().getSimpleName() + "[hint=" + actualHint + "]";
+        setDescriptionOfActual("hint", actualHint);
         return equalsAllowingNull(actualHint, expectedHint);
     }
 }
