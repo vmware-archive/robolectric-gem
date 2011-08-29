@@ -29,13 +29,19 @@ public class HelloWorldActivity extends RoboActivity {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                new AlertDialog.Builder(HelloWorldActivity.this)
-                        .setMessage("Thanks for running the sample app.")
-                        .setPositiveButton("OK, enough already!", null)
-                        .show();
+                showAlertDialog();
             }
         });
         dialog.setTitle("Hi!");
         dialog.show();
+    }
+
+    private void showAlertDialog() {
+        new AlertDialog.Builder(this)
+                .setMessage("Thanks for running the sample app.")
+                .setPositiveButton("OK", null)
+                .setNeutralButton("Really?", null)
+                .setNegativeButton("No, thanks", null)
+                .show();
     }
 }

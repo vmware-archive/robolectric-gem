@@ -65,6 +65,52 @@ public class AlertDialogMatcherTest {
         expect(matcher.getDescriptionOfActual()).toEqual("AlertDialog[positiveButtonText=button text]");
     }
 
+    @Test
+    public void test_toHaveNegativeButtonText() throws Exception {
+        builder.setNegativeButton(null, null);
+        createDialog(builder);
+        expect(matcher.toHaveNegativeButtonText("")).toBeTrue();
+
+        builder.setNegativeButton("button text", null);
+        createDialog(builder);
+        expect(matcher.toHaveNegativeButtonText("button text")).toBeTrue();
+        expect(matcher.toHaveNegativeButtonText("other text")).toBeFalse();
+    }
+
+    @Test
+    public void test_toHaveNegativeButtonText_failureMessages() throws Exception {
+        builder.setNegativeButton("button text", null);
+        createDialog(builder);
+
+        matcher.toHaveNegativeButtonText("button text");
+        expect(matcher.getDescriptionOfActual()).toEqual("AlertDialog[negativeButtonText=button text]");
+        matcher.toHaveNegativeButtonText("not the same text");
+        expect(matcher.getDescriptionOfActual()).toEqual("AlertDialog[negativeButtonText=button text]");
+    }
+    
+    @Test
+    public void test_toHaveNeutralButtonText() throws Exception {
+        builder.setNeutralButton(null, null);
+        createDialog(builder);
+        expect(matcher.toHaveNeutralButtonText("")).toBeTrue();
+
+        builder.setNeutralButton("button text", null);
+        createDialog(builder);
+        expect(matcher.toHaveNeutralButtonText("button text")).toBeTrue();
+        expect(matcher.toHaveNeutralButtonText("other text")).toBeFalse();
+    }
+
+    @Test
+    public void test_toHaveNeutralButtonText_failureMessages() throws Exception {
+        builder.setNeutralButton("button text", null);
+        createDialog(builder);
+
+        matcher.toHaveNeutralButtonText("button text");
+        expect(matcher.getDescriptionOfActual()).toEqual("AlertDialog[neutralButtonText=button text]");
+        matcher.toHaveNeutralButtonText("not the same text");
+        expect(matcher.getDescriptionOfActual()).toEqual("AlertDialog[neutralButtonText=button text]");
+    }
+
     private void createDialog(AlertDialog.Builder builder) {
         AlertDialog dialog = builder.create();
         matcher = newAlertDialogMatcher(dialog);

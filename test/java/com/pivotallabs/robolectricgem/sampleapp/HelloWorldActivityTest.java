@@ -74,7 +74,9 @@ public class HelloWorldActivityTest {
         AlertDialog alertDialog = ShadowAlertDialog.getLatestAlertDialog();
 
         expect(alertDialog).toBeShowing();
-        expect(alertDialog).toHavePositiveButtonText("OK, enough already!");
         expect(alertDialog).toHaveMessage("Thanks for running the sample app.");
+        expect(alertDialog).toHavePositiveButtonText("OK");
+        expect(alertDialog).toHaveNeutralButtonText("Really?");
+        expect(alertDialog).toHaveNegativeButtonText("No, thanks");
     }
 }

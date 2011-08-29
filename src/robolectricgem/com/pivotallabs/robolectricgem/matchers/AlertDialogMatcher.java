@@ -14,8 +14,20 @@ public class AlertDialogMatcher<T extends AlertDialog, M extends AlertDialogMatc
     }
 
     public boolean toHavePositiveButtonText(CharSequence expectedButtonText) {
-        CharSequence actualButtonText = actual.getButton(AlertDialog.BUTTON_POSITIVE).getText();
-        setDescriptionOfActual("positiveButtonText", actualButtonText);
+        return hasButtonText(expectedButtonText, AlertDialog.BUTTON_POSITIVE, "positiveButtonText");
+    }
+
+    public boolean toHaveNegativeButtonText(CharSequence expectedButtonText) {
+        return hasButtonText(expectedButtonText, AlertDialog.BUTTON_NEGATIVE, "negativeButtonText");
+    }
+
+    public boolean toHaveNeutralButtonText(CharSequence expectedButtonText) {
+        return hasButtonText(expectedButtonText, AlertDialog.BUTTON_NEUTRAL, "neutralButtonText");
+    }
+
+    private boolean hasButtonText(CharSequence expectedButtonText, int button, String propertyName) {
+        CharSequence actualButtonText = actual.getButton(button).getText();
+        setDescriptionOfActual(propertyName, actualButtonText);
         return actualButtonText.equals(expectedButtonText);
     }
 }
