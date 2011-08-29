@@ -10,7 +10,7 @@ import roboguice.inject.InjectView;
 
 public class HelloWorldActivity extends RoboActivity {
     @InjectView(R.id.title)
-    TextView title;
+    private TextView title;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
