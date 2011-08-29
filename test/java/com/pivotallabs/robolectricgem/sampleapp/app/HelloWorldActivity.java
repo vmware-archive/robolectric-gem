@@ -1,5 +1,6 @@
 package com.pivotallabs.robolectricgem.sampleapp.app;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.widget.TextView;
 import com.pivotallabs.robolectricgem.R;
@@ -15,5 +16,9 @@ public class HelloWorldActivity extends RoboActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hello_world);
         title.setText("Hello World");
+
+        Dialog dialog = new Dialog(this);
+        dialog.setTitle("Hi!");
+        dialog.show();
     }
 }

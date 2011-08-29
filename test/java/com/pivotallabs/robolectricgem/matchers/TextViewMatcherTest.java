@@ -52,6 +52,9 @@ public class TextViewMatcherTest {
         textView.setHint("actual hint");
         matcher.toHaveHint("expected hint");
         expect(matcher.getDescriptionOfActual()).toEqual("TextView[hint=actual hint]");
+
+        matcher.toHaveHint("actual hint");
+        expect(matcher.getDescriptionOfActual()).toEqual("TextView[hint=actual hint]");
     }
 
     private <T extends TextView> TextViewMatcher<T, ?> newTextViewMatcher(T value) {

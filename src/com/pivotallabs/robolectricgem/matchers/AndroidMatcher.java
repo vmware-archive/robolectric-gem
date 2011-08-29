@@ -10,4 +10,11 @@ public class AndroidMatcher<T, M extends AndroidMatcher<T,M>>  extends ObjectMat
     protected String getDescriptionOfActual() {
         return descriptionOfActual;
     }
+
+    protected <T> boolean equalsAllowingNull(T actual, T expected) {
+        if (actual == null) {
+            return expected == null;
+        }
+        return actual.equals(expected);
+    }
 }

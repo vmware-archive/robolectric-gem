@@ -14,9 +14,6 @@ public class TextViewMatcher<T extends TextView, M extends TextViewMatcher<T, M>
     public boolean toHaveHint(CharSequence expectedHint) {
         CharSequence actualHint = actual.getHint();
         descriptionOfActual = actual.getClass().getSimpleName() + "[hint=" + actualHint + "]";
-        if (actualHint == null) {
-            return expectedHint == null;
-        }
-        return actualHint.equals(expectedHint);
+        return equalsAllowingNull(actualHint, expectedHint);
     }
 }

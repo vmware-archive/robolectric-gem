@@ -3,6 +3,7 @@ package com.pivotallabs.robolectricgem.expect;
 import com.pivotallabs.greatexpectations.BaseMatcher;
 import com.pivotallabs.greatexpectations.ExpectGenerator;
 import com.pivotallabs.robolectricgem.matchers.CompoundButtonMatcher;
+import com.pivotallabs.robolectricgem.matchers.DialogMatcher;
 import com.pivotallabs.robolectricgem.matchers.TextViewMatcher;
 import com.pivotallabs.robolectricgem.matchers.ViewMatcher;
 
@@ -16,6 +17,15 @@ import java.util.List;
  * See https://github.com/xian/great-expectations
  */
 public class RunnableExpectGenerator extends ExpectGenerator {
+
+    @SuppressWarnings({"unchecked"})
+    public static final Class<? extends BaseMatcher>[] CUSTOM_MATCHER_CLASSES = new Class[] {
+            CompoundButtonMatcher.class,
+            DialogMatcher.class,
+            TextViewMatcher.class,
+            ViewMatcher.class
+    };
+
     public RunnableExpectGenerator(String packageName) {
         super(packageName);
     }
@@ -48,14 +58,7 @@ public class RunnableExpectGenerator extends ExpectGenerator {
     @SuppressWarnings({"unchecked"})
     public List<Class<? extends BaseMatcher>> matcherClasses() {
         List<Class<? extends BaseMatcher>> classes = super.matcherClasses();
-
-        Class<? extends BaseMatcher>[] customMatcherClasses = new Class[] {
-                CompoundButtonMatcher.class,
-                TextViewMatcher.class,
-                ViewMatcher.class
-        };
-
-        classes.addAll(Arrays.asList(customMatcherClasses));
+        classes.addAll(Arrays.asList(CUSTOM_MATCHER_CLASSES));
         return classes;
     }
 }
