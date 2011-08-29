@@ -7,6 +7,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import com.pivotallabs.robolectricgem.R;
 import com.pivotallabs.robolectricgem.support.RobolectricTestRunnerWithInjection;
+import com.xtremelabs.robolectric.Robolectric;
 import com.xtremelabs.robolectric.shadows.ShadowDialog;
 import org.junit.Before;
 import org.junit.Test;
@@ -58,5 +59,10 @@ public class HelloWorldActivityTest {
     public void shouldShowADialog() throws Exception {
         Dialog dialog = ShadowDialog.getLatestDialog();
         expect(dialog).toHaveTitle("Hi!");
+        expect(dialog).toBeShowing();
+
+        Robolectric.clickOn(dialog.findViewById(R.id.dismiss_button));
+
+        expect(dialog).toBeDismissed();
     }
 }

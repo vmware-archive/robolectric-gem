@@ -12,4 +12,12 @@ public class DialogMatcher<T extends Dialog, M extends DialogMatcher<T, M>> exte
         setDescriptionOfActual("title", actualTitle);
         return equalsAllowingNull(actualTitle, expectedTitle);
     }
+
+    public boolean toBeShowing() {
+        return actual.isShowing();
+    }
+
+    public boolean toBeDismissed() {
+        return shadowOf(actual).hasBeenDismissed();
+    }
 }

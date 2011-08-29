@@ -2,6 +2,7 @@ package com.pivotallabs.robolectricgem.sampleapp;
 
 import android.app.Dialog;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import com.pivotallabs.robolectricgem.R;
 import roboguice.activity.RoboActivity;
@@ -17,7 +18,18 @@ public class HelloWorldActivity extends RoboActivity {
         setContentView(R.layout.hello_world);
         title.setText("Hello World");
 
-        Dialog dialog = new Dialog(this);
+        showWelcomeDialog();
+    }
+
+    private void showWelcomeDialog() {
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog);
+        dialog.findViewById(R.id.dismiss_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
         dialog.setTitle("Hi!");
         dialog.show();
     }

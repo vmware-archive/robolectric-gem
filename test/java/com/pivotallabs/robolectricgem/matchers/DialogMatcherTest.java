@@ -40,6 +40,24 @@ public class DialogMatcherTest {
         expect(matcher.getDescriptionOfActual()).toEqual("Dialog[title=the title]");
     }
 
+    @Test
+    public void test_toBeShowing() throws Exception {
+        expect(matcher.toBeShowing()).toBeFalse();
+        dialog.show();
+        expect(matcher.toBeShowing()).toBeTrue();
+        dialog.dismiss();
+        expect(matcher.toBeShowing()).toBeFalse();
+    }
+
+    @Test
+    public void test_toBeDismissed() throws Exception {
+        expect(matcher.toBeDismissed()).toBeFalse();
+        dialog.show();
+        expect(matcher.toBeDismissed()).toBeFalse();
+        dialog.dismiss();
+        expect(matcher.toBeDismissed()).toBeTrue();
+    }
+
     private <T extends Dialog> DialogMatcher<T, ?> newDialogMatcher(T value) {
         DialogMatcher matcher = new DialogMatcher();
         GreatExpectations.setActual(matcher, value);
