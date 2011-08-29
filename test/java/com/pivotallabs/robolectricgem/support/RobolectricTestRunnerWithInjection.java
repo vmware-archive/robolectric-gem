@@ -1,6 +1,6 @@
 package com.pivotallabs.robolectricgem.support;
 
-import com.pivotallabs.robolectricgem.sampleapp.app.SampleApplication;
+import com.pivotallabs.robolectricgem.sampleapp.SampleApplication;
 import com.xtremelabs.robolectric.Robolectric;
 import com.xtremelabs.robolectric.RobolectricTestRunner;
 import org.junit.runners.model.InitializationError;

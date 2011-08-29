@@ -20,9 +20,11 @@ This allows you to write unit test assertions for Android classes in the style o
     }
 
 For more examples, see the included
-[sample Android app](https://github.com/pivotal/robolectric-gem/tree/master/test/java/com/pivotallabs/robolectricgem/sampleapp/app)
+[sample Android app](https://github.com/pivotal/robolectric-gem/tree/master/src/sampleapp-src/com/pivotallabs/robolectricgem/sampleapp)
 and
-[its tests](https://github.com/pivotal/robolectric-gem/tree/master/test/java/com/pivotallabs/robolectricgem/sampleapp/test).
+[its tests](https://github.com/pivotal/robolectric-gem/tree/master/test/java/com/pivotallabs/robolectricgem/sampleapp).
+
+For all of the included matchers, see [the matcher classes](https://github.com/pivotal/robolectric-gem/tree/master/src/robolectricgem/com/pivotallabs/robolectricgem/matchers).
 
 ### Contributing
 
@@ -46,8 +48,11 @@ We also use ant.  To compile, run tests, and build the jar file on the command-l
 After a successful ant build, you can find the built `robolectric-gem.jar` in the `ant_build` subdirectory.
 
 To add a new matcher method to a pre-existing matcher class, simply enhance the class' test and the class itself.  To
-add a new matcher class, you must also re-generate Expect.java.  Add your new matcher class to the list of matchers
-at the top of RunnableExpectGenerator, then auto-generate Expect.java in IDEA by clicking the
+add a new matcher class, you must also re-generate
+[Expect.java](https://github.com/pivotal/robolectric-gem/tree/master/src/robolectricgem/com/pivotallabs/robolectricgem/expect/Expect.java).
+Add your new matcher class to the list of matchers
+at the top of [RunnableExpectGenerator](https://github.com/pivotal/robolectric-gem/tree/master/src/robolectricgem/com/pivotallabs/robolectricgem/expect/RunnableExpectGenerator.java),
+then auto-generate Expect.java in IDEA by clicking the
 run button for the run configuration called "Add custom great-expectation Matchers by Regenerating Expect.java".
 
 Please follow the existing conventions for customized failure messages.  If you customize your matcher's failure

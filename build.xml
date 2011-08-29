@@ -40,6 +40,15 @@
          See "Custom Android task" at https://github.com/pivotal/RobolectricSample/blob/master/build.xml -->
     <import file="${sdk.dir}/tools/ant/pre_setup.xml" />
 
+    <!-- Custom properties to define our two top-level src directories. -->
+    <property name="source.robolectricgem.sampleapp.dir" value="src/sampleapp-src" />
+    <property name="source.robolectricgem.sampleapp.absolute.dir" location="${source.robolectricgem.sampleapp.dir}" />
+    <property name="source.robolectricgem.dir" value="src/robolectricgem" />
+    <property name="source.robolectricgem.absolute.dir" location="${source.robolectricgem.dir}" />
+
+    <!-- Redefine the src dir for the Android compiler. -->
+    <property name="source.dir" value="${source.robolectricgem.sampleapp.dir}" />
+
     <!-- extension targets. Uncomment the ones where you want to do custom work in between standard targets -->
     <!--
     <target name="-pre-build">
@@ -105,7 +114,8 @@
                verbose="${verbose}"
                classpath="${extensible.classpath}"
                includeantruntime="false">
-            <src path="${source.absolute.dir}" />
+            <src path="${source.robolectricgem.sampleapp.absolute.dir}" />
+            <src path="${source.robolectricgem.absolute.dir}" />
             <src path="${gen.absolute.dir}" />
 
             <!-- test src -->

@@ -1,4 +1,4 @@
-package com.pivotallabs.robolectricgem.sampleapp.test;
+package com.pivotallabs.robolectricgem.sampleapp;
 
 import android.app.Dialog;
 import android.view.View;
@@ -6,7 +6,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import com.pivotallabs.robolectricgem.R;
-import com.pivotallabs.robolectricgem.sampleapp.app.HelloWorldActivity;
 import com.pivotallabs.robolectricgem.support.RobolectricTestRunnerWithInjection;
 import com.xtremelabs.robolectric.shadows.ShadowDialog;
 import org.junit.Before;

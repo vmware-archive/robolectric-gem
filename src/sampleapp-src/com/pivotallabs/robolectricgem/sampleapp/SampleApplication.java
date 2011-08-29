@@ -1,4 +1,4 @@
-package com.pivotallabs.robolectricgem.sampleapp.app;
+package com.pivotallabs.robolectricgem.sampleapp;
 
 import com.google.inject.Module;
 import roboguice.application.RoboInjectableApplication;
