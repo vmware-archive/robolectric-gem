@@ -19,11 +19,16 @@ import java.util.List;
 
 /**
  * See https://github.com/xian/great-expectations
+ *
+ * Run this class to regenerate Expect.java.
+ *
+ * This class is designed to be subclassed, in case you want to extend
+ * the list of matcher classes with your own matcher classes.
  */
 public class RunnableExpectGenerator extends ExpectGenerator {
 
     @SuppressWarnings({"unchecked"})
-    public static final Class<? extends BaseMatcher>[] CUSTOM_MATCHER_CLASSES = new Class[] {
+    protected static final Class<? extends BaseMatcher>[] CUSTOM_MATCHER_CLASSES = new Class[]{
             ActivityMatcher.class,
             AlertDialogMatcher.class,
             CompoundButtonMatcher.class,
@@ -43,20 +48,31 @@ public class RunnableExpectGenerator extends ExpectGenerator {
     }
 
     public static void generateCustomExpect() throws FileNotFoundException {
-        String packageName = Expect.class.getPackage().getName();
-        String path = "src/robolectricgem/" + packageName.replace(".", "/") + "/Expect.java";
+        String packageName = getExpectClassPackageName();
+        String path = getExpectClassFilePath();
         System.out.println("path = " + path);
         System.out.println("packagename = " + packageName);
         RunnableExpectGenerator expectGenerator = new RunnableExpectGenerator(packageName);
         expectGenerator.setOut(new PrintStream(new File(path)));
         expectGenerator.generate();
     }
-    
+
     @Override
     @SuppressWarnings({"unchecked"})
     public List<Class<? extends BaseMatcher>> matcherClasses() {
         List<Class<? extends BaseMatcher>> classes = super.matcherClasses();
         classes.addAll(Arrays.asList(CUSTOM_MATCHER_CLASSES));
         return classes;
+    }
+
+    protected static String getExpectClassPackageName() {
+        return Expect.class.getPackage().getName();
+    }
+
+    protected static String getExpectClassFilePath() {
+        return "src" + File.separator +
+                "robolectricgem" + File.separator +
+                getExpectClassPackageName().replace(".", File.separator) + File.separator +
+                "Expect.java";
     }
 }
