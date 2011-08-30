@@ -94,4 +94,14 @@ public class HelloWorldActivityTest {
         expect(alertDialog).toHaveNeutralButtonText("Really?");
         expect(alertDialog).toHaveNegativeButtonText("No, thanks");
     }
+
+    @Test
+    public void shouldMakeHttpRequest_whenTheLogoIsClicked() throws Exception {
+        Robolectric.addPendingHttpResponse(200, "response body");
+
+        Robolectric.getFakeHttpLayer().clearRequestInfos();
+        expect(Robolectric.getFakeHttpLayer()).not.toHaveMadeAnyRequest();
+        Robolectric.clickOn(logoImageView);
+        expect(Robolectric.getFakeHttpLayer()).toHaveMadeAnyRequest();
+    }
 }

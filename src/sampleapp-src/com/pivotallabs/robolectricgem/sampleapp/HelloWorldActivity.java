@@ -9,6 +9,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.pivotallabs.robolectricgem.R;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
 import roboguice.activity.RoboActivity;
 import roboguice.inject.InjectView;
 
@@ -34,11 +37,30 @@ public class HelloWorldActivity extends RoboActivity {
 
         loadLogoFromWeb();
         showWelcomeDialog();
+
+        logoImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                HttpClient httpClient = new DefaultHttpClient();
+                // TODO do something real here
+                HttpGet httpGet = new HttpGet("http://localhost/foo.txt");
+                try {
+                    httpClient.execute(httpGet);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     private void loadLogoFromWeb() {
         try {
-            BufferedInputStream in = new BufferedInputStream(new URL(LOGO_URL).openStream());
+            BufferedInputStream in = new BufferedInputStream(new URL(LOGO_URL).openStream()); // TODO use apache here
+            // TODO for example:
+//            HttpEntity entity = response.getEntity();
+//            if (entity != null) {
+//                InputStream instream = entity.getContent();
+//            }
             BitmapDrawable drawable = (BitmapDrawable) Drawable.createFromStream(in, LOGO_URL);
             logoImageView.setImageDrawable(drawable);
         } catch (MalformedURLException e) {
