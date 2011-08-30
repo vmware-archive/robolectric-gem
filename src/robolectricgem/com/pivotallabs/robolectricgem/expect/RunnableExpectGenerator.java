@@ -2,6 +2,7 @@ package com.pivotallabs.robolectricgem.expect;
 
 import com.pivotallabs.greatexpectations.BaseMatcher;
 import com.pivotallabs.greatexpectations.ExpectGenerator;
+import com.pivotallabs.robolectricgem.matchers.ActivityMatcher;
 import com.pivotallabs.robolectricgem.matchers.AlertDialogMatcher;
 import com.pivotallabs.robolectricgem.matchers.CompoundButtonMatcher;
 import com.pivotallabs.robolectricgem.matchers.DialogMatcher;
@@ -23,6 +24,7 @@ public class RunnableExpectGenerator extends ExpectGenerator {
 
     @SuppressWarnings({"unchecked"})
     public static final Class<? extends BaseMatcher>[] CUSTOM_MATCHER_CLASSES = new Class[] {
+            ActivityMatcher.class,
             AlertDialogMatcher.class,
             CompoundButtonMatcher.class,
             DialogMatcher.class,

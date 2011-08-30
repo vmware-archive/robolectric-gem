@@ -31,6 +31,9 @@ public class Expect {
     public static <T extends String, M extends StringMatcher<T, M>> StringMatcher<T, ?> expect(T actual) {
         return wrapped(StringMatcher.class, actual);
     }
+    public static <T extends android.app.Activity, M extends com.pivotallabs.robolectricgem.matchers.ActivityMatcher<T, M>> com.pivotallabs.robolectricgem.matchers.ActivityMatcher<T, ?> expect(T actual) {
+        return wrapped(com.pivotallabs.robolectricgem.matchers.ActivityMatcher.class, actual);
+    }
     public static <T extends android.app.AlertDialog, M extends com.pivotallabs.robolectricgem.matchers.AlertDialogMatcher<T, M>> com.pivotallabs.robolectricgem.matchers.AlertDialogMatcher<T, ?> expect(T actual) {
         return wrapped(com.pivotallabs.robolectricgem.matchers.AlertDialogMatcher.class, actual);
     }

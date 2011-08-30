@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.pivotallabs.robolectricgem.R;
@@ -31,16 +32,19 @@ public class HelloWorldActivity extends RoboActivity {
     @InjectView(R.id.logo_image_view)
     private ImageView logoImageView;
 
+    @InjectView(R.id.quit_button)
+    private Button quitButton;
+
     private HttpClient httpClient = new DefaultHttpClient();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hello_world);
+
         title.setText("Hello World");
 
         logoImageView.setImageDrawable(loadImageFromWeb(ROBOLECTRIC_LOGO_URL));
-        showWelcomeDialog();
 
         logoImageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +52,15 @@ public class HelloWorldActivity extends RoboActivity {
                 logoImageView.setImageDrawable(loadImageFromWeb(PIVOTAL_LOGO_URL));
             }
         });
+
+        quitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        showWelcomeDialog();
     }
 
     private Drawable loadImageFromWeb(String imageUrl) {
