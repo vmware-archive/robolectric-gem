@@ -25,6 +25,7 @@ public class HelloWorldActivityTest {
     private EditText editText;
     private CheckBox checkBox;
     private ImageView iconImageView;
+    private ImageView logoImageView;
 
     @Before
     public void setup() throws Exception {
@@ -35,6 +36,7 @@ public class HelloWorldActivityTest {
         editText = (EditText) activity.findViewById(R.id.edit_text);
         checkBox = (CheckBox) activity.findViewById(R.id.check_box);
         iconImageView = (ImageView) activity.findViewById(R.id.icon_image_view);
+        logoImageView = (ImageView) activity.findViewById(R.id.logo_image_view);
     }
 
     @Test
@@ -51,8 +53,13 @@ public class HelloWorldActivityTest {
     }
 
     @Test
-    public void shouldShowAnIcon() throws Exception {
+    public void shouldShowAnIconLoadedFromResources() throws Exception {
         expect(iconImageView).toBeLoadedFromResource(R.drawable.icon);
+    }
+
+    @Test
+    public void shouldShowAnIconLoadedFromTheWeb() throws Exception {
+        expect(logoImageView).toBeLoadedFromSource(HelloWorldActivity.LOGO_URL);
     }
 
     @Test

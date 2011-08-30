@@ -10,7 +10,23 @@ import static com.xtremelabs.robolectric.Robolectric.shadowOf;
 public class ImageViewMatcher<T extends ImageView, M extends ImageViewMatcher<T, M>> extends ViewMatcher<T, M> {
     public boolean toBeLoadedFromResource(int expectedResourceId) {
         BitmapDrawable actualDrawable = (BitmapDrawable) actual.getDrawable();
-        return actualDrawable != null &&
-                shadowOf(actualDrawable.getBitmap()).getLoadedFromResourceId() == expectedResourceId;
+        if (actualDrawable == null) {
+            setDescriptionOfActual("drawable", null);
+            return false;
+        }
+        int actualResourceId = shadowOf(actualDrawable.getBitmap()).getLoadedFromResourceId();
+        setDescriptionOfActual("drawableResourceId", actualResourceId);
+        return actualResourceId == expectedResourceId;
+    }
+
+    public boolean toBeLoadedFromSource(String expectedSource) {
+        BitmapDrawable actualDrawable = (BitmapDrawable) actual.getDrawable();
+        if (actualDrawable == null) {
+            setDescriptionOfActual("drawable", null);
+            return false;
+        }
+        String actualSource = shadowOf(actualDrawable).getSource();
+        setDescriptionOfActual("source", actualSource);
+        return equalsAllowingNull(actualSource, expectedSource);
     }
 }
