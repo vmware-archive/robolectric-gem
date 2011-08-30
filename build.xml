@@ -182,8 +182,8 @@
 
     <target name="release-jar" depends="test" description="package the library jar for release">
         <jar destfile="${out.absolute.dir}/robolectric-gem.jar"
-             basedir="${out.classes.absolute.dir}"
-             excludes="**/R.class **/R$*.class"
+             basedir="${out.test.classes.absolute.dir}"
+             includes="com/pivotallabs/robolectricgem/expect/*.class com/pivotallabs/robolectricgem/matchers/*.class"
             />
     </target>
 
