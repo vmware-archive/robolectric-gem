@@ -102,13 +102,14 @@ public class HelloWorldActivityTest {
 
     @Test
     public void shouldReplaceTheLogoWithAnotherImage_whenTheLogoIsClicked() throws Exception {
-        Robolectric.addHttpResponseRule(new FakeHttpLayer.UriRegexMatcher("GET", ".*/pivotallabs-logo.png"),
-                new TestHttpResponse());
+        FakeHttpLayer.DefaultRequestMatcher logoRequestMatcher =
+                new FakeHttpLayer.DefaultRequestMatcher("GET", HelloWorldActivity.PIVOTAL_LOGO_URL);
+        Robolectric.addHttpResponseRule(logoRequestMatcher, new TestHttpResponse());
 
         Robolectric.getFakeHttpLayer().clearRequestInfos();
         expect(Robolectric.getFakeHttpLayer()).not.toHaveMadeAnyRequest();
         Robolectric.clickOn(logoImageView);
-        expect(Robolectric.getFakeHttpLayer()).toHaveMadeAnyRequest();
+        expect(Robolectric.getFakeHttpLayer()).toHaveMadeRequestMatching(logoRequestMatcher);
 
         expect(logoImageView).toBeLoadedFromSource(HelloWorldActivity.PIVOTAL_LOGO_URL);
     }
