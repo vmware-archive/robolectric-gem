@@ -12,6 +12,8 @@ import com.pivotallabs.robolectricgem.support.RobolectricTestRunnerWithInjection
 import com.xtremelabs.robolectric.Robolectric;
 import com.xtremelabs.robolectric.shadows.ShadowAlertDialog;
 import com.xtremelabs.robolectric.shadows.ShadowDialog;
+import com.xtremelabs.robolectric.tester.org.apache.http.FakeHttpLayer;
+import com.xtremelabs.robolectric.tester.org.apache.http.TestHttpResponse;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,6 +31,9 @@ public class HelloWorldActivityTest {
 
     @Before
     public void setup() throws Exception {
+        Robolectric.addHttpResponseRule(new FakeHttpLayer.UriRegexMatcher("GET", ".*/robolectric.png"),
+                new TestHttpResponse());
+
         HelloWorldActivity activity = new HelloWorldActivity();
         activity.onCreate(null);
 
@@ -59,7 +64,7 @@ public class HelloWorldActivityTest {
 
     @Test
     public void shouldShowAnIconLoadedFromTheWeb() throws Exception {
-        expect(logoImageView).toBeLoadedFromSource(HelloWorldActivity.LOGO_URL);
+        expect(logoImageView).toBeLoadedFromSource(HelloWorldActivity.ROBOLECTRIC_LOGO_URL);
     }
 
     @Test
@@ -96,12 +101,15 @@ public class HelloWorldActivityTest {
     }
 
     @Test
-    public void shouldMakeHttpRequest_whenTheLogoIsClicked() throws Exception {
-        Robolectric.addPendingHttpResponse(200, "response body");
+    public void shouldReplaceTheLogoWithAnotherImage_whenTheLogoIsClicked() throws Exception {
+        Robolectric.addHttpResponseRule(new FakeHttpLayer.UriRegexMatcher("GET", ".*/pivotallabs-logo.png"),
+                new TestHttpResponse());
 
         Robolectric.getFakeHttpLayer().clearRequestInfos();
         expect(Robolectric.getFakeHttpLayer()).not.toHaveMadeAnyRequest();
         Robolectric.clickOn(logoImageView);
         expect(Robolectric.getFakeHttpLayer()).toHaveMadeAnyRequest();
+
+        expect(logoImageView).toBeLoadedFromSource(HelloWorldActivity.PIVOTAL_LOGO_URL);
     }
 }

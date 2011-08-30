@@ -2,26 +2,28 @@ package com.pivotallabs.robolectricgem.sampleapp;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.pivotallabs.robolectricgem.R;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import roboguice.activity.RoboActivity;
 import roboguice.inject.InjectView;
 
-import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
-import java.net.URL;
 
 public class HelloWorldActivity extends RoboActivity {
-    public static final String LOGO_URL = "http://pivotal.github.com/robolectric/images/robolectric.png";
+    
+    public static final String ROBOLECTRIC_LOGO_URL = "http://pivotal.github.com/robolectric/images/robolectric.png";
+    public static final String PIVOTAL_LOGO_URL = "http://pivotallabs.com/images/pivotallabs-logo.png";
 
     @InjectView(R.id.title)
     private TextView title;
@@ -29,45 +31,40 @@ public class HelloWorldActivity extends RoboActivity {
     @InjectView(R.id.logo_image_view)
     private ImageView logoImageView;
 
+    private HttpClient httpClient = new DefaultHttpClient();
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hello_world);
         title.setText("Hello World");
 
-        loadLogoFromWeb();
+        logoImageView.setImageDrawable(loadImageFromWeb(ROBOLECTRIC_LOGO_URL));
         showWelcomeDialog();
 
         logoImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HttpClient httpClient = new DefaultHttpClient();
-                // TODO do something real here
-                HttpGet httpGet = new HttpGet("http://localhost/foo.txt");
-                try {
-                    httpClient.execute(httpGet);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                logoImageView.setImageDrawable(loadImageFromWeb(PIVOTAL_LOGO_URL));
             }
         });
     }
 
-    private void loadLogoFromWeb() {
+    private Drawable loadImageFromWeb(String imageUrl) {
+        // Note: In a real application, this IO should be done in another thread.
         try {
-            BufferedInputStream in = new BufferedInputStream(new URL(LOGO_URL).openStream()); // TODO use apache here
-            // TODO for example:
-//            HttpEntity entity = response.getEntity();
-//            if (entity != null) {
-//                InputStream instream = entity.getContent();
-//            }
-            BitmapDrawable drawable = (BitmapDrawable) Drawable.createFromStream(in, LOGO_URL);
-            logoImageView.setImageDrawable(drawable);
+            HttpResponse response = httpClient.execute(new HttpGet(imageUrl));
+            HttpEntity entity = response.getEntity();
+            if (entity != null) {
+                InputStream in = entity.getContent();
+                return Drawable.createFromStream(in, imageUrl);
+            }
         } catch (MalformedURLException e) {
             // ignore
         } catch (IOException e) {
             // ignore
         }
+        return null;
     }
 
     private void showWelcomeDialog() {
