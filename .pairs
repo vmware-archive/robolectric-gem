@@ -1,8 +1,9 @@
 pairs:
-  rr: Ryan Richard;rrichard
-  ik: Igor Kozachenko;ikozachenko
+  rr: Ryan Richard; rrichard
+  ik: Igor Kozachenko; ikozachenko
+  ts: Tyler Schultz; tyler
+  mm: Mike Mazur; mmazur
   
 email:
   prefix: pair
   domain: pivotallabs.com
-
