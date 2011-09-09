@@ -1,5 +1,6 @@
 package com.pivotallabs.robolectricgem.matchers;
 
+import android.widget.EditText;
 import android.widget.TextView;
 import com.pivotallabs.greatexpectations.GreatExpectations;
 import com.xtremelabs.robolectric.RobolectricTestRunner;
@@ -26,6 +27,15 @@ public class TextViewMatcherTest {
         textView.setText("Hello World");
         expect(matcher.toHaveText("Hello World")).toBeTrue();
         expect(matcher.toHaveText("Good Day")).toBeFalse();
+    }
+
+    @Test
+    public void test_editTextToHaveText() throws Exception {
+        EditText editText = new EditText(null);
+        editText.setText("Hello World");
+        TextViewMatcher<EditText, ?> editTextMatcher = newTextViewMatcher(editText);
+        expect(editTextMatcher.toHaveText("Hello World")).toBeTrue();
+        expect(editTextMatcher.toHaveText("Good Day")).toBeFalse();
     }
 
     @Test
