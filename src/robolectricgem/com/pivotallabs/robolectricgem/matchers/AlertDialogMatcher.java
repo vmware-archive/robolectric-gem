@@ -1,6 +1,7 @@
 package com.pivotallabs.robolectricgem.matchers;
 
 import android.app.AlertDialog;
+import android.widget.Button;
 import com.pivotallabs.greatexpectations.MatcherOf;
 
 import static com.xtremelabs.robolectric.Robolectric.shadowOf;
@@ -14,20 +15,25 @@ public class AlertDialogMatcher<T extends AlertDialog, M extends AlertDialogMatc
     }
 
     public boolean toHavePositiveButtonText(CharSequence expectedButtonText) {
-        return hasButtonText(expectedButtonText, AlertDialog.BUTTON_POSITIVE, "positiveButtonText");
+        return hasButtonText(expectedButtonText, AlertDialog.BUTTON_POSITIVE, "positiveButton");
     }
 
     public boolean toHaveNegativeButtonText(CharSequence expectedButtonText) {
-        return hasButtonText(expectedButtonText, AlertDialog.BUTTON_NEGATIVE, "negativeButtonText");
+        return hasButtonText(expectedButtonText, AlertDialog.BUTTON_NEGATIVE, "negativeButton");
     }
 
     public boolean toHaveNeutralButtonText(CharSequence expectedButtonText) {
-        return hasButtonText(expectedButtonText, AlertDialog.BUTTON_NEUTRAL, "neutralButtonText");
+        return hasButtonText(expectedButtonText, AlertDialog.BUTTON_NEUTRAL, "neutralButton");
     }
 
     private boolean hasButtonText(CharSequence expectedButtonText, int button, String propertyName) {
-        CharSequence actualButtonText = actual.getButton(button).getText();
-        setDescriptionOfActual(propertyName, actualButtonText);
+        Button actualButton = actual.getButton(button);
+        if (actualButton == null) {
+            setDescriptionOfActual(propertyName, null);
+            return false;
+        }
+        CharSequence actualButtonText = actualButton.getText();
+        setDescriptionOfActual(propertyName + "Text", actualButtonText);
         return actualButtonText.equals(expectedButtonText);
     }
 }

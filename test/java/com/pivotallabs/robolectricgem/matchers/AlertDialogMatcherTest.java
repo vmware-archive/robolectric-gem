@@ -1,6 +1,7 @@
 package com.pivotallabs.robolectricgem.matchers;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import com.pivotallabs.greatexpectations.GreatExpectations;
 import com.xtremelabs.robolectric.RobolectricTestRunner;
 import org.junit.Before;
@@ -46,6 +47,10 @@ public class AlertDialogMatcherTest {
     public void test_toHavePositiveButtonText() throws Exception {
         builder.setPositiveButton(null, null);
         createDialog(builder);
+        expect(matcher.toHavePositiveButtonText("")).toBeFalse();
+
+        builder.setPositiveButton(null, new NoOpClickListener());
+        createDialog(builder);
         expect(matcher.toHavePositiveButtonText("")).toBeTrue();
 
         builder.setPositiveButton("button text", null);
@@ -56,6 +61,12 @@ public class AlertDialogMatcherTest {
 
     @Test
     public void test_toHavePositiveButtonText_failureMessages() throws Exception {
+        builder.setPositiveButton(null, null);
+        createDialog(builder);
+
+        matcher.toHavePositiveButtonText("anything");
+        expect(matcher.getDescriptionOfActual()).toEqual("AlertDialog[positiveButton=null]");
+
         builder.setPositiveButton("button text", null);
         createDialog(builder);
 
@@ -67,7 +78,7 @@ public class AlertDialogMatcherTest {
 
     @Test
     public void test_toHaveNegativeButtonText() throws Exception {
-        builder.setNegativeButton(null, null);
+        builder.setNegativeButton(null, new NoOpClickListener());
         createDialog(builder);
         expect(matcher.toHaveNegativeButtonText("")).toBeTrue();
 
@@ -90,7 +101,7 @@ public class AlertDialogMatcherTest {
     
     @Test
     public void test_toHaveNeutralButtonText() throws Exception {
-        builder.setNeutralButton(null, null);
+        builder.setNeutralButton(null, new NoOpClickListener());
         createDialog(builder);
         expect(matcher.toHaveNeutralButtonText("")).toBeTrue();
 
@@ -120,5 +131,11 @@ public class AlertDialogMatcherTest {
         AlertDialogMatcher matcher = new AlertDialogMatcher();
         GreatExpectations.setActual(matcher, value);
         return matcher;
+    }
+
+    private static class NoOpClickListener implements DialogInterface.OnClickListener {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+        }
     }
 }
