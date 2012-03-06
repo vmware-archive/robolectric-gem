@@ -29,12 +29,20 @@ public class ImageViewMatcherTest {
     }
 
     @Test
-    public void test_toBeLoadedFromResource() throws Exception {
+    public void test_toBeLoadedFromResource_forBitmaps() throws Exception {
         expect(matcher.toBeLoadedFromResource(R.drawable.icon)).toBeFalse();
 
         imageView.setImageResource(R.drawable.icon);
         expect(matcher.toBeLoadedFromResource(R.drawable.icon)).toBeTrue();
         expect(matcher.toBeLoadedFromResource(android.R.drawable.btn_minus)).toBeFalse();
+    }
+
+    @Test
+    public void test_toBeLoadedFromResource_forLayerLists() throws Exception {
+        expect(matcher.toBeLoadedFromResource(R.drawable.layer_list)).toBeFalse();
+
+        imageView.setImageResource(R.drawable.layer_list);
+        expect(matcher.toBeLoadedFromResource(R.drawable.layer_list)).toBeTrue();
     }
 
     @Test
@@ -86,6 +94,7 @@ public class ImageViewMatcherTest {
     private <T extends ImageView> ImageViewMatcher<T, ?> newImageViewMatcher(T value) {
         ImageViewMatcher matcher = new ImageViewMatcher();
         GreatExpectations.setActual(matcher, value);
+        //noinspection unchecked
         return matcher;
     }
 }
