@@ -5,6 +5,7 @@ import com.pivotallabs.greatexpectations.ExpectGenerator;
 import com.pivotallabs.robolectricgem.matchers.ActivityMatcher;
 import com.pivotallabs.robolectricgem.matchers.AlertDialogMatcher;
 import com.pivotallabs.robolectricgem.matchers.AnimationMatcher;
+import com.pivotallabs.robolectricgem.matchers.ClassMatcher;
 import com.pivotallabs.robolectricgem.matchers.CompoundButtonMatcher;
 import com.pivotallabs.robolectricgem.matchers.DialogMatcher;
 import com.pivotallabs.robolectricgem.matchers.FakeHttpLayerMatcher;
@@ -39,6 +40,7 @@ public class RunnableExpectGenerator extends ExpectGenerator {
             ActivityMatcher.class,
             AnimationMatcher.class,
             AlertDialogMatcher.class,
+            ClassMatcher.class,
             CompoundButtonMatcher.class,
             DialogMatcher.class,
             FakeHttpLayerMatcher.class,

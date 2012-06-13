@@ -131,5 +131,4 @@ public class ViewMatcherTest {
         GreatExpectations.setActual(matcher, value);
         return matcher;
     }
-
 }

@@ -18,6 +18,7 @@ import com.xtremelabs.robolectric.tester.org.apache.http.TestHttpResponse;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import roboguice.activity.RoboActivity;
 
 import static com.pivotallabs.robolectricgem.expect.Expect.expect;
 
@@ -126,5 +127,11 @@ public class HelloWorldActivityTest {
     @Test
     public void shouldStartTheAnimation() throws Exception {
         expect(activity.getAnimation()).toHaveStarted();
+    }
+
+    @Test
+    public void shouldBeAssignableFromRoboActivity() throws Exception {
+        expect(RoboActivity.class).toBeAssignableFrom(((Object)activity).getClass());
+        expect(((Object)activity).getClass()).toBeAssignableTo(RoboActivity.class);
     }
 }
