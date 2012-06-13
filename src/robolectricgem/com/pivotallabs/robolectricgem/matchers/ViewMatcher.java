@@ -34,6 +34,14 @@ public class ViewMatcher<T extends View, M extends ViewMatcher<T, M>> extends An
         return actual.isEnabled();
     }
 
+    public boolean toBeClickable() {
+        return actual.isClickable();
+    }
+
+    public boolean toBeFocusable() {
+        return actual.isFocusable();
+    }
+
     private String visibilityToString(int visibility) {
         switch (visibility) {
             case View.VISIBLE:

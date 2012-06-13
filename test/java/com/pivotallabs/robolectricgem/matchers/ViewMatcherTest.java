@@ -108,6 +108,24 @@ public class ViewMatcherTest {
         expect(matcher.toBeEnabled()).toBeFalse();
     }
 
+    @Test
+    public void test_toBeClickable() throws Exception {
+        view.setClickable(true);
+        expect(matcher.toBeClickable()).toBeTrue();
+
+        view.setClickable(false);
+        expect(matcher.toBeClickable()).toBeFalse();
+    }
+
+    @Test
+    public void test_toBeFocusable() throws Exception {
+        view.setFocusable(true);
+        expect(matcher.toBeFocusable()).toBeTrue();
+
+        view.setFocusable(false);
+        expect(matcher.toBeFocusable()).toBeFalse();
+    }
+
     private <T extends View> ViewMatcher<T, ?> newViewMatcher(T value) {
         ViewMatcher matcher = new ViewMatcher();
         GreatExpectations.setActual(matcher, value);
