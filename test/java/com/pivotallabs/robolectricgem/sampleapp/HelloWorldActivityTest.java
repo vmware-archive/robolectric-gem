@@ -48,6 +48,8 @@ public class HelloWorldActivityTest {
         expect(titleView).toHaveText("Hello World");
 
         expect(titleView).toBeEnabled();
+        expect(titleView).not.toBeClickable();
+        expect(titleView).not.toBeFocusable();
     }
 
     @Test
