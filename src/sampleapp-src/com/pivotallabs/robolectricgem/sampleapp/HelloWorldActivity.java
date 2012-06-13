@@ -5,6 +5,8 @@ import android.app.Dialog;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -37,6 +39,8 @@ public class HelloWorldActivity extends RoboActivity {
 
     private HttpClient httpClient = new DefaultHttpClient();
 
+    private Animation animation;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +64,14 @@ public class HelloWorldActivity extends RoboActivity {
             }
         });
 
+        animation = new RotateAnimation(this, null);
+        animation.start();
+
         showWelcomeDialog();
+    }
+
+    public Animation getAnimation() {
+        return animation;
     }
 
     private Drawable loadImageFromWeb(String imageUrl) {

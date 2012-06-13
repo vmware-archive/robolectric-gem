@@ -62,6 +62,9 @@ public class Expect {
     public static <T extends android.app.Activity, M extends com.pivotallabs.robolectricgem.matchers.ActivityMatcher<T, M>> com.pivotallabs.robolectricgem.matchers.ActivityMatcher<T, ?> expect(T actual) {
         return wrapped(com.pivotallabs.robolectricgem.matchers.ActivityMatcher.class, actual);
     }
+    public static <T extends android.view.animation.Animation, M extends com.pivotallabs.robolectricgem.matchers.AnimationMatcher<T, M>> com.pivotallabs.robolectricgem.matchers.AnimationMatcher<T, ?> expect(T actual) {
+        return wrapped(com.pivotallabs.robolectricgem.matchers.AnimationMatcher.class, actual);
+    }
     public static <T extends android.app.AlertDialog, M extends com.pivotallabs.robolectricgem.matchers.AlertDialogMatcher<T, M>> com.pivotallabs.robolectricgem.matchers.AlertDialogMatcher<T, ?> expect(T actual) {
         return wrapped(com.pivotallabs.robolectricgem.matchers.AlertDialogMatcher.class, actual);
     }

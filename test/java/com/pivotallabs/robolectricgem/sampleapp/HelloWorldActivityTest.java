@@ -122,4 +122,9 @@ public class HelloWorldActivityTest {
         Robolectric.clickOn(quitButton);
         expect(activity).toBeFinishing();
     }
+
+    @Test
+    public void shouldStartTheAnimation() throws Exception {
+        expect(activity.getAnimation()).toHaveStarted();
+    }
 }

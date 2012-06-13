@@ -4,6 +4,7 @@ import com.pivotallabs.greatexpectations.BaseMatcher;
 import com.pivotallabs.greatexpectations.ExpectGenerator;
 import com.pivotallabs.robolectricgem.matchers.ActivityMatcher;
 import com.pivotallabs.robolectricgem.matchers.AlertDialogMatcher;
+import com.pivotallabs.robolectricgem.matchers.AnimationMatcher;
 import com.pivotallabs.robolectricgem.matchers.CompoundButtonMatcher;
 import com.pivotallabs.robolectricgem.matchers.DialogMatcher;
 import com.pivotallabs.robolectricgem.matchers.FakeHttpLayerMatcher;
@@ -36,6 +37,7 @@ public class RunnableExpectGenerator extends ExpectGenerator {
     @SuppressWarnings({"unchecked"})
     protected static final Class<? extends BaseMatcher>[] CUSTOM_MATCHER_CLASSES = new Class[]{
             ActivityMatcher.class,
+            AnimationMatcher.class,
             AlertDialogMatcher.class,
             CompoundButtonMatcher.class,
             DialogMatcher.class,
