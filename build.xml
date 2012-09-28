@@ -128,9 +128,9 @@
                debug="true"
                extdirs=""
                destdir="${out.test.classes.absolute.dir}"
-               bootclasspathref="android.target.classpath"
+               bootclasspathref="project.target.class.path"
                verbose="${verbose}"
-               classpath="${extensible.classpath}"
+               classpath="libs"
                includeantruntime="false">
             <src path="${source.robolectricgem.sampleapp.absolute.dir}" />
             <src path="${source.robolectricgem.absolute.dir}" />
@@ -141,8 +141,9 @@
             <classpath>
                 <pathelement path="${out.classes.absolute.dir}"/>
                 <pathelement path="submodules/robolectric/bin/mainClasses"/>
-                <fileset dir="${extensible.libs.classpath}" includes="*.jar"/>
-                <fileset dir="${extensible.libs.classpath}/test" includes="**/*.jar"/>
+                <pathelement path="${sdk.dir}/extras/android/support/v4/android-support-v4.jar"/>
+                <fileset dir="libs" includes="*.jar"/>
+                <fileset dir="libs/test" includes="**/*.jar"/>
             </classpath>
         </javac>
     </target>
@@ -163,14 +164,15 @@
                 <!-- Project -->
                 <pathelement path="${out.classes.absolute.dir}"/>
                 <pathelement path="${out.test.classes.absolute.dir}"/>
-                <fileset dir="${extensible.libs.classpath}" includes="**/*.jar"/>
+                <fileset dir="libs" includes="**/*.jar"/>
 
                 <!-- Robolectric -->
                 <fileset dir="submodules/robolectric/lib/main" includes="*.jar"/>
                 <pathelement path="submodules/robolectric/bin/mainClasses"/>
 
                 <!-- Android -->
-                <path refid="android.target.classpath"/>
+                <path refid="project.target.class.path"/>
+                <pathelement path="${sdk.dir}/extras/android/support/v4/android-support-v4.jar"/>
             </classpath>
         </junit>
         <fail if="junit.failure" message="Unit test(s) failed.  See reports!"/>

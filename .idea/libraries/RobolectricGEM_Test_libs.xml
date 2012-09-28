@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="Test libs">
+  <library name="RobolectricGEM Test libs">
     <CLASSES>
       <root url="file://$PROJECT_DIR$/libs/test" />
       <root url="file://$PROJECT_DIR$/libs/test/http-client" />
