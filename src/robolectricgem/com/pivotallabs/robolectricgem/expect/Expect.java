@@ -3,12 +3,10 @@ package com.pivotallabs.robolectricgem.expect;
 import com.pivotallabs.greatexpectations.matchers.BooleanMatcher;
 import com.pivotallabs.greatexpectations.matchers.ComparableMatcher;
 import com.pivotallabs.greatexpectations.matchers.DateMatcher;
-import com.pivotallabs.greatexpectations.matchers.DoubleMatcher;
-import com.pivotallabs.greatexpectations.matchers.FloatMatcher;
-import com.pivotallabs.greatexpectations.matchers.IntegerMatcher;
 import com.pivotallabs.greatexpectations.matchers.IterableMatcher;
 import com.pivotallabs.greatexpectations.matchers.LongMatcher;
 import com.pivotallabs.greatexpectations.matchers.ObjectMatcher;
+import com.pivotallabs.greatexpectations.matchers.SetMatcher;
 import com.pivotallabs.greatexpectations.matchers.StringMatcher;
 
 import static com.pivotallabs.greatexpectations.GreatExpectations.wrapped;
@@ -32,32 +30,14 @@ public class Expect {
     public static <T extends Iterable<X>, X, M extends IterableMatcher<T, X, M>> IterableMatcher<T, X, ?> expect(T actual) {
         return wrapped(IterableMatcher.class, actual);
     }
-    public static <T extends String, M extends StringMatcher<T, M>> StringMatcher<T, ?> expect(T actual) {
-        return wrapped(StringMatcher.class, actual);
-    }
-    public static <T extends Integer, M extends IntegerMatcher<T, M>> IntegerMatcher<T, ?> expect(T actual) {
-        return wrapped(IntegerMatcher.class, actual);
-    }
-    public static IntegerMatcher<Integer, ?> expect(int actual) {
-        return wrapped(IntegerMatcher.class, actual);
+    public static <T extends java.util.Set<X>, X, M extends SetMatcher<T, X, M>> SetMatcher<T, X, ?> expect(T actual) {
+        return wrapped(SetMatcher.class, actual);
     }
     public static <T extends Long, M extends LongMatcher<T, M>> LongMatcher<T, ?> expect(T actual) {
         return wrapped(LongMatcher.class, actual);
     }
-    public static LongMatcher<Long, ?> expect(long actual) {
-        return wrapped(LongMatcher.class, actual);
-    }
-    public static <T extends Float, M extends FloatMatcher<T, M>> FloatMatcher<T, ?> expect(T actual) {
-        return wrapped(FloatMatcher.class, actual);
-    }
-    public static FloatMatcher<Float, ?> expect(float actual) {
-        return wrapped(FloatMatcher.class, actual);
-    }
-    public static <T extends Double, M extends DoubleMatcher<T, M>> DoubleMatcher<T, ?> expect(T actual) {
-        return wrapped(DoubleMatcher.class, actual);
-    }
-    public static DoubleMatcher<Double, ?> expect(double actual) {
-        return wrapped(DoubleMatcher.class, actual);
+    public static <T extends String, M extends StringMatcher<T, M>> StringMatcher<T, ?> expect(T actual) {
+        return wrapped(StringMatcher.class, actual);
     }
     public static <T extends android.app.Activity, M extends com.pivotallabs.robolectricgem.matchers.ActivityMatcher<T, M>> com.pivotallabs.robolectricgem.matchers.ActivityMatcher<T, ?> expect(T actual) {
         return wrapped(com.pivotallabs.robolectricgem.matchers.ActivityMatcher.class, actual);
