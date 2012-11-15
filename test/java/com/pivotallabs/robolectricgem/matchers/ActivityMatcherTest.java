@@ -30,10 +30,17 @@ public class ActivityMatcherTest {
     }
 
     @Test
-    public void test_toHaveStarted() throws Exception {
+    public void test_toHaveStarted_withExpectedAsClass() throws Exception {
         expect(matcher.toHaveStarted(FooActivity.class)).toBeFalse();
         activity.startActivity(new Intent(activity, FooActivity.class));
         expect(matcher.toHaveStarted(FooActivity.class)).toBeTrue();
+    }
+
+    @Test
+    public void test_toHaveStarted_withExpectedAsString() throws Exception {
+        expect(matcher.toHaveStarted("com.pivotallabs.robolectricgem.matchers.ActivityMatcherTest$FooActivity")).toBeFalse();
+        activity.startActivity(new Intent(activity, FooActivity.class));
+        expect(matcher.toHaveStarted("com.pivotallabs.robolectricgem.matchers.ActivityMatcherTest$FooActivity")).toBeTrue();
     }
 
     private <T extends Activity> ActivityMatcher<T, ?> newActivityMatcher(T value) {

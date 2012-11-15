@@ -14,11 +14,15 @@ public class ActivityMatcher<T extends Activity, M extends ActivityMatcher<T, M>
     }
 
     public boolean toHaveStarted(Class<? extends Activity> expected) {
+        return toHaveStarted(expected.getName());
+    }
+
+    public boolean toHaveStarted(String expected) {
         Intent nextStartedActivity = shadowOf(actual).getNextStartedActivity();
         if (nextStartedActivity == null) {
             return false;
         }
         ShadowIntent shadowIntent = shadowOf(nextStartedActivity);
-        return shadowIntent.getComponent().getClassName().equals(expected.getName());
+        return shadowIntent.getComponent().getClassName().equals(expected);
     }
 }
