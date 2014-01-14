@@ -1,3 +1,8 @@
+# DEPRECATED
+
+We now recommend using [fest-assert](https://github.com/alexruiz/fest-assert-2.x) and [fest-android](https://github.com/square/fest-android).  See [pivotal/AndroidIntelliJStarter](https://github.com/pivotal/AndroidIntelliJStarter) for a working example.
+
+
 robolectric-gem
 ==================
 
